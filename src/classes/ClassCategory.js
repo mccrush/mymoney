@@ -1,7 +1,7 @@
-import getId from './getId'
-import getDateNow from './getDateNow'
+import getId from './../scripts/getId'
+import getDateNow from './../scripts/getDateNow'
 
-export class Category {
+export default class ClassCategory {
   constructor(type = '', title = '') {
     this.id = getId()
     this.type = type

@@ -1,13 +1,13 @@
 <template>
   <li class="list-group-item">
-    {{ category.title }}
+    {{ group.title }}
   </li>
 </template>
 
 <script>
 export default {
   props: {
-    category: Object
+    group: Object
   }
 }
 </script>

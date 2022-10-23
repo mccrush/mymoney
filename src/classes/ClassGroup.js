@@ -1,7 +1,7 @@
-import getId from './getId'
-import getDateNow from './getDateNow'
+import getId from './../scripts/getId'
+import getDateNow from './../scripts/getDateNow'
 
-export class Group {
+export default class ClassGroup {
   constructor(type = '', title = '') {
     this.id = getId()
     this.type = type
@@ -9,6 +9,6 @@ export class Group {
     this.description = ''
     this.position = 0
     this.dateCreate = getDateNow()
-    this.categoties = []
+    this.categories = []
   }
 }
