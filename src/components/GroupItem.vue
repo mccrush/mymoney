@@ -9,6 +9,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <span>{{ group.title }}</span>
       <div>
+        <ButtonEdit class="me-2" />
         <ButtonRemove @click="removeGroupItem({ id: group.id })" />
       </div>
     </div>
@@ -20,19 +21,22 @@
 <script>
 import ClassCategory from './../classes/ClassCategory'
 
+import ButtonEdit from './buttons/ButtonEdit.vue'
 import ButtonRemove from './buttons/ButtonRemove.vue'
 import CategoryAddItem from './CategoryAddItem.vue'
 import CategoryList from './CategoryList.vue'
 
 export default {
-  components: { ButtonRemove, CategoryAddItem, CategoryList },
+  components: { ButtonEdit, ButtonRemove, CategoryAddItem, CategoryList },
   props: {
     group: Object
   },
   emits: ['remove-group-item', 'add-category-item'],
   methods: {
     removeGroupItem({ id }) {
-      this.$emit('remove-group-item', { id })
+      if (confirm('Точно удалить?')) {
+        this.$emit('remove-group-item', { id })
+      }
     },
 
     addCategory({ title }) {
