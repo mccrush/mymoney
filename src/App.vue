@@ -15,6 +15,7 @@ import HelloWorld from "./components/HelloWorld.vue";
   </div>
   <button class="btn btn-success">Run</button>
   <HelloWorld msg="Vite + Vue" />
+  <span class="btn btn-close"></span>
 </template>
 
 <style scoped>
@@ -23,9 +24,11 @@ import HelloWorld from "./components/HelloWorld.vue";
   padding: 1.5em;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
