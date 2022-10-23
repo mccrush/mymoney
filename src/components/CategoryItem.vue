@@ -12,8 +12,9 @@
   >
     <span>{{ category.title }}</span>
     <div>
-      <ButtonEdit class="me-1" />
-      <ButtonRemove @click="removeCategoryItem({ id: category.id })" />
+      <span class="badge bg-success me-2">8500</span>
+      <ButtonEdit class="me-0" />
+      <!-- <ButtonRemove @click="removeCategoryItem({ id: category.id })" /> -->
     </div>
   </li>
 </template>
