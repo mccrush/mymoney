@@ -1,5 +1,5 @@
 <template>
-  <ul class="list-group">
+  <ul class="list-group mb-1">
     <CategoryItem
       v-for="category in categories"
       :key="category.id"
@@ -15,10 +15,8 @@ export default {
   components: {
     CategoryItem
   },
-  computed: {
-    categories() {
-      return JSON.parse(localStorage.getItem('mm-categories') || '[]')
-    }
+  props: {
+    categories: Array
   }
 }
 </script>

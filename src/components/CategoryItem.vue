@@ -1,5 +1,5 @@
 <template>
-  <li class="list-group-item">
+  <li class="list-group-item pt-1 pb-1">
     {{ category.title }}
   </li>
 </template>

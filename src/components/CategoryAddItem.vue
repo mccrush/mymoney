@@ -1,17 +1,17 @@
 <template>
-  <div class="input-group mb-3">
+  <div class="input-group input-group-sm mt-2 mb-2">
     <input
       type="text"
       class="form-control"
-      placeholder="Название группы"
-      aria-label="Название группы"
-      aria-describedby="addGroup"
+      placeholder="Название категории"
+      aria-label="Название категории"
+      aria-describedby="addCategory"
       v-model.trim="title"
     />
     <select
       class="form-select"
-      id="inputGroupType"
-      aria-label="Выбор типа группы"
+      id="inputCategoryType"
+      aria-label="Выбор типа категории"
       v-model="type"
     >
       <option value="debet">Доход</option>
@@ -20,8 +20,8 @@
     <button
       class="btn btn-outline-secondary"
       type="button"
-      id="addGroup"
-      @click="addGroupItem"
+      id="addCategory"
+      @click="addCategoryItem"
     >
       Добавить
     </button>
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  emits: ['add-group'],
+  emits: ['add-category'],
   data() {
     return {
       title: '',
@@ -38,9 +38,9 @@ export default {
     }
   },
   methods: {
-    addGroupItem() {
+    addCategoryItem() {
       if (this.title) {
-        this.$emit('add-group', { type: this.type, title: this.title })
+        this.$emit('add-category', { title: this.title })
         this.title = ''
       }
     }
