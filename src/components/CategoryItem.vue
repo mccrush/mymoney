@@ -17,7 +17,14 @@
         class="me-0"
         @click="$emit('show-modal', { item: category })"
       />
-      <!-- <ButtonRemove @click="removeCategoryItem({ id: category.id })" /> -->
+      <ButtonRemove
+        @click="
+          removeCategoryItem({
+            groupId: category.groupId,
+            categoryId: category.id
+          })
+        "
+      />
     </div>
   </li>
 </template>
@@ -36,9 +43,9 @@ export default {
   },
   emits: ['remove-category-item', 'show-modal'],
   methods: {
-    removeCategoryItem({ id }) {
+    removeCategoryItem({ groupId, categoryId }) {
       if (confirm('Точно удалить?')) {
-        this.$emit('remove-category-item', { id })
+        this.$emit('remove-category-item', { groupId, categoryId })
       }
     }
   }

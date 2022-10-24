@@ -9,6 +9,7 @@
           :groups="groups"
           @remove-group-item="removeGroupItem"
           @add-category-item="addCategoryItem"
+          @remove-category-item="removeCategoryItem"
           @show-modal="showModal"
         />
       </div>
@@ -58,6 +59,16 @@ export default {
       const index = this.groups.findIndex(item => item.id === category.groupId)
 
       this.groups[index].categories.push(category)
+      localStorage.setItem('mm-groups', JSON.stringify(this.groups))
+    },
+
+    removeCategoryItem({ groupId, categoryId }) {
+      console.log('App.vue groupId', groupId, 'categoryId:', categoryId)
+      const index = this.groups.findIndex(item => item.id === groupId)
+      const arrayCategories = this.groups[index].categories.filter(
+        item => item.id !== categoryId
+      )
+      this.groups[index].categories = arrayCategories
       localStorage.setItem('mm-groups', JSON.stringify(this.groups))
     },
 

@@ -6,6 +6,7 @@
       :group="group"
       @remove-group-item="removeGroupItem"
       @add-category-item="addCategoryItem"
+      @remove-category-item="removeCategoryItem"
       @show-modal="showModal"
     />
   </ul>
@@ -21,7 +22,12 @@ export default {
   props: {
     groups: Array
   },
-  emits: ['remove-group-item', 'add-category-item', 'show-modal'],
+  emits: [
+    'remove-group-item',
+    'add-category-item',
+    'remove-category-item',
+    'show-modal'
+  ],
   methods: {
     removeGroupItem({ id }) {
       this.$emit('remove-group-item', { id })
@@ -29,6 +35,10 @@ export default {
 
     addCategoryItem({ category }) {
       this.$emit('add-category-item', { category })
+    },
+
+    removeCategoryItem({ groupId, categoryId }) {
+      this.$emit('remove-category-item', { groupId, categoryId })
     },
 
     showModal({ item }) {

@@ -17,7 +17,11 @@
       </div>
     </div>
     <CategoryAddItem @add-category="addCategory" />
-    <CategoryList :categories="group.categories" @show-modal="showModal" />
+    <CategoryList
+      :categories="group.categories"
+      @remove-category-item="removeCategoryItem"
+      @show-modal="showModal"
+    />
   </li>
 </template>
 
@@ -30,11 +34,21 @@ import CategoryAddItem from './CategoryAddItem.vue'
 import CategoryList from './CategoryList.vue'
 
 export default {
-  components: { ButtonEdit, ButtonRemove, CategoryAddItem, CategoryList },
+  components: {
+    ButtonEdit,
+    ButtonRemove,
+    CategoryAddItem,
+    CategoryList
+  },
   props: {
     group: Object
   },
-  emits: ['remove-group-item', 'add-category-item', 'show-modal'],
+  emits: [
+    'remove-group-item',
+    'add-category-item',
+    'remove-category-item',
+    'show-modal'
+  ],
   methods: {
     removeGroupItem({ id }) {
       if (confirm('Точно удалить?')) {
@@ -49,6 +63,10 @@ export default {
       )
 
       this.$emit('add-category-item', { category })
+    },
+
+    removeCategoryItem({ groupId, categoryId }) {
+      this.$emit('remove-category-item', { groupId, categoryId })
     },
 
     showModal({ item }) {

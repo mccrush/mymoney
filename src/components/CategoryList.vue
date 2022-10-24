@@ -4,6 +4,7 @@
       v-for="category in categories"
       :key="category.id"
       :category="category"
+      @remove-category-item="removeCategoryItem"
       @show-modal="showModal"
     />
   </ul>
@@ -19,8 +20,12 @@ export default {
   props: {
     categories: Array
   },
-  emits: ['show-modal'],
+  emits: ['remove-category-item', 'show-modal'],
   methods: {
+    removeCategoryItem({ groupId, categoryId }) {
+      this.$emit('remove-category-item', { groupId, categoryId })
+    },
+
     showModal({ item }) {
       this.$emit('show-modal', { item })
     }

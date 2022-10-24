@@ -13,7 +13,7 @@
         <label for="inputCategoryTitle">Название категории</label>
       </div>
 
-      <div class="form-floating">
+      <div class="form-floating mb-2">
         <select
           class="form-select"
           id="inputCategoryGroupId"
@@ -28,7 +28,7 @@
         <label for="inputCategoryGroupId">Группа</label>
       </div>
 
-      <div class="form-floating mb-2">
+      <div class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
