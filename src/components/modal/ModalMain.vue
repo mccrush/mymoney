@@ -3,7 +3,12 @@
     <div class="modal-dialog">
       <div class="modal-content border-0">
         <ModalHeader v-if="item" :item="item" />
-        <ModalBody v-if="item" :item="item" @save-item="saveItem" />
+        <ModalBody
+          v-if="item"
+          :item="item"
+          :groups="groups"
+          @save-item="saveItem"
+        />
         <!-- <ModalFooter v-if="item" :item="item" /> -->
       </div>
     </div>
@@ -22,7 +27,8 @@ export default {
     ModalFooter
   },
   props: {
-    item: Object
+    item: Object,
+    groups: Array
   },
   emits: ['save-item'],
   methods: {

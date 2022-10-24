@@ -13,7 +13,12 @@
         />
       </div>
     </div>
-    <ModalMain id="modal" :item="modalItem" @save-item="saveItem" />
+    <ModalMain
+      id="modal"
+      :item="modalItem"
+      :groups="groups"
+      @save-item="saveItem"
+    />
   </div>
 </template>
 

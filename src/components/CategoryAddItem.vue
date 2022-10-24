@@ -8,7 +8,7 @@
       aria-describedby="addCategory"
       v-model.trim="title"
     />
-    <select
+    <!-- <select
       class="form-select"
       id="inputCategoryType"
       aria-label="Выбор типа категории"
@@ -16,7 +16,7 @@
     >
       <option value="debet">Доход</option>
       <option value="credit">Расход</option>
-    </select>
+    </select> -->
     <button
       class="btn btn-outline-secondary"
       type="button"

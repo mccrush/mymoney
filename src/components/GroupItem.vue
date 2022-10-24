@@ -17,7 +17,7 @@
       </div>
     </div>
     <CategoryAddItem @add-category="addCategory" />
-    <CategoryList :categories="group.categories" />
+    <CategoryList :categories="group.categories" @show-modal="showModal" />
   </li>
 </template>
 
@@ -49,6 +49,10 @@ export default {
       )
 
       this.$emit('add-category-item', { category })
+    },
+
+    showModal({ item }) {
+      this.$emit('show-modal', { item })
     }
   }
 }

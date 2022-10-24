@@ -13,7 +13,10 @@
     <span>{{ category.title }}</span>
     <div>
       <span class="badge bg-success me-2">8500</span>
-      <ButtonEdit class="me-0" />
+      <ButtonEdit
+        class="me-0"
+        @click="$emit('show-modal', { item: category })"
+      />
       <!-- <ButtonRemove @click="removeCategoryItem({ id: category.id })" /> -->
     </div>
   </li>
@@ -31,7 +34,7 @@ export default {
   props: {
     category: Object
   },
-  emits: ['remove-category-item'],
+  emits: ['remove-category-item', 'show-modal'],
   methods: {
     removeCategoryItem({ id }) {
       if (confirm('Точно удалить?')) {

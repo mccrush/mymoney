@@ -4,6 +4,7 @@
       v-for="category in categories"
       :key="category.id"
       :category="category"
+      @show-modal="showModal"
     />
   </ul>
 </template>
@@ -17,6 +18,12 @@ export default {
   },
   props: {
     categories: Array
+  },
+  emits: ['show-modal'],
+  methods: {
+    showModal({ item }) {
+      this.$emit('show-modal', { item })
+    }
   }
 }
 </script>

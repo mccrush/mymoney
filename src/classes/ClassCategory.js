@@ -4,6 +4,7 @@ import getDateNow from './../scripts/getDateNow'
 export default class ClassCategory {
   constructor(groupId = '', title = '') {
     this.id = getId()
+    this.type = 'category'
     this.groupId = groupId
     this.title = title
     this.description = ''
