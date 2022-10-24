@@ -1,5 +1,24 @@
 <template>
   <div class="modal-body">
-    <p>Modal body text goes here.</p>
+    <FormGroup :item="item" @save-item="saveItem" />
   </div>
 </template>
+
+<script>
+import FormGroup from './../forms/FormGroup.vue'
+
+export default {
+  components: {
+    FormGroup
+  },
+  props: {
+    item: Object
+  },
+  emits: ['save-item'],
+  methods: {
+    saveItem() {
+      this.$emit('save-item')
+    }
+  }
+}
+</script>

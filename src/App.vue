@@ -13,7 +13,7 @@
         />
       </div>
     </div>
-    <ModalMain id="modal" :item="modalItem" />
+    <ModalMain id="modal" :item="modalItem" @save-item="saveItem" />
   </div>
 </template>
 
@@ -60,6 +60,12 @@ export default {
       this.modalItem = item
       const modal = new Modal(document.getElementById('modal'))
       modal.show()
+    },
+
+    saveItem() {
+      const index = this.groups.findIndex(item => item.id === this.modalItem)
+      this.groups[index] = this.modalItem
+      localStorage.setItem('mm-groups', JSON.stringify(this.groups))
     }
   }
 }
