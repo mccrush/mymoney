@@ -1,0 +1,5 @@
+<template>
+  <div class="modal-body">
+    <p>Modal body text goes here.</p>
+  </div>
+</template>

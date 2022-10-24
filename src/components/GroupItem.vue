@@ -9,7 +9,10 @@
     <div class="d-flex justify-content-between align-items-center">
       <span>{{ group.title }}</span>
       <div>
-        <ButtonEdit class="me-2" />
+        <ButtonEdit
+          class="me-2"
+          @click="$emit('show-modal', { item: group })"
+        />
         <ButtonRemove @click="removeGroupItem({ id: group.id })" />
       </div>
     </div>
@@ -31,7 +34,7 @@ export default {
   props: {
     group: Object
   },
-  emits: ['remove-group-item', 'add-category-item'],
+  emits: ['remove-group-item', 'add-category-item', 'show-modal'],
   methods: {
     removeGroupItem({ id }) {
       if (confirm('Точно удалить?')) {
