@@ -63,7 +63,6 @@ export default {
     },
 
     removeCategoryItem({ groupId, categoryId }) {
-      console.log('App.vue groupId', groupId, 'categoryId:', categoryId)
       const index = this.groups.findIndex(item => item.id === groupId)
       const arrayCategories = this.groups[index].categories.filter(
         item => item.id !== categoryId

@@ -12,9 +12,11 @@
   >
     <span>{{ category.title }}</span>
     <div>
-      <span class="badge bg-success me-2">8500</span>
+      <span v-if="category.sum" class="badge bg-success me-2">{{
+        category.sum
+      }}</span>
       <ButtonEdit
-        class="me-0"
+        class="me-1"
         @click="$emit('show-modal', { item: category })"
       />
       <ButtonRemove

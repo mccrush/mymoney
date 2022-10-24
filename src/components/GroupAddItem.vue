@@ -7,6 +7,7 @@
       aria-label="Название группы"
       aria-describedby="addGroup"
       v-model.trim="title"
+      @keyup.enter="addGroupItem"
     />
     <select
       class="form-select"

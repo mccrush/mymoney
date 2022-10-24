@@ -8,6 +8,7 @@
     <FormCategory
       v-if="item.type === 'category'"
       :item="item"
+      :groups="groups"
       @save-item="saveItem"
     />
   </div>

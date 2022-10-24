@@ -7,6 +7,7 @@
       aria-label="Название категории"
       aria-describedby="addCategory"
       v-model.trim="title"
+      @keyup.enter="addCategoryItem"
     />
     <!-- <select
       class="form-select"
