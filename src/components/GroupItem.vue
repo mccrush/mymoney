@@ -9,6 +9,9 @@
     <div class="d-flex justify-content-between align-items-center">
       <span>{{ group.title }}</span>
       <div>
+        <span class="badge bg-success me-2">{{
+          getTotalSum(group.categories)
+        }}</span>
         <ButtonEdit
           class="me-2"
           @click="$emit('show-modal', { item: group })"
@@ -27,6 +30,7 @@
 
 <script>
 import ClassCategory from './../classes/ClassCategory'
+import getTotalSum from './../scripts/getTotalSum'
 
 import ButtonEdit from './buttons/ButtonEdit.vue'
 import ButtonRemove from './buttons/ButtonRemove.vue'
@@ -50,6 +54,7 @@ export default {
     'show-modal'
   ],
   methods: {
+    getTotalSum,
     removeGroupItem({ id }) {
       if (confirm('Точно удалить?')) {
         this.$emit('remove-group-item', { id })
