@@ -1,6 +1,6 @@
 <template>
   <li
-    class="list-group-item rounded border-0 shadow-sm mb-4"
+    class="list-group-item rounded border-0 shadow-sm mb-3"
     :class="{
       'list-group-item-danger': group.type === 'credit',
       'list-group-item-success': group.type === 'debet'
@@ -10,12 +10,13 @@
       <span>{{ group.title }}</span>
       <div>
         <span
+          v-if="group.sum"
           class="badge me-2"
           :class="{
             'bg-success': group.type === 'debet',
             'bg-danger': group.type === 'credit'
           }"
-          >{{ getTotalSum(group.categories) || '' }}</span
+          >{{ group.sum }}</span
         >
         <ButtonEdit
           class="me-2"
