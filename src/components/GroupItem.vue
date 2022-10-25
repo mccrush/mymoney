@@ -1,6 +1,6 @@
 <template>
   <li
-    class="list-group-item"
+    class="list-group-item rounded border-0 shadow-sm mb-4"
     :class="{
       'list-group-item-danger': group.type === 'credit',
       'list-group-item-success': group.type === 'debet'

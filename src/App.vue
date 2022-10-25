@@ -5,8 +5,20 @@
     <div class="row">
       <div class="col-6">
         <GroupAddItem @add-group="addGroup" />
+      </div>
+      <div class="col-6"></div>
+      <div class="col-6">
         <GroupList
-          :groups="groups"
+          :groups="groups.filter(item => item.type === 'debet')"
+          @remove-group-item="removeGroupItem"
+          @add-category-item="addCategoryItem"
+          @remove-category-item="removeCategoryItem"
+          @show-modal="showModal"
+        />
+      </div>
+      <div class="col-6">
+        <GroupList
+          :groups="groups.filter(item => item.type === 'credit')"
           @remove-group-item="removeGroupItem"
           @add-category-item="addCategoryItem"
           @remove-category-item="removeCategoryItem"
