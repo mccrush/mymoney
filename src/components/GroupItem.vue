@@ -10,7 +10,7 @@
       <span>{{ group.title }}</span>
       <div>
         <span class="badge bg-success me-2">{{
-          getTotalSum(group.categories)
+          getTotalSum(group.categories) || ''
         }}</span>
         <ButtonEdit
           class="me-2"

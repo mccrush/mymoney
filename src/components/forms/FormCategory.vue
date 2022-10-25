@@ -52,7 +52,7 @@ export default {
   emits: ['save-item'],
   methods: {
     saveItem() {
-      //this.$emit('save-item')
+      this.$emit('save-item')
     }
   }
 }

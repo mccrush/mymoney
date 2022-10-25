@@ -78,8 +78,22 @@ export default {
     },
 
     saveItem() {
-      const index = this.groups.findIndex(item => item.id === this.modalItem)
-      this.groups[index] = this.modalItem
+      if (this.modalItem.type === 'debet' || this.modalItem.type === 'credit') {
+        const index = this.groups.findIndex(
+          item => item.id === this.modalItem.id
+        )
+        this.groups[index] = this.modalItem
+      } else if (this.modalItem.type === 'category') {
+        const indexGroup = this.groups.findIndex(
+          item => item.id === this.modalItem.groupId
+        )
+
+        const indexCategory = this.groups[indexGroup].categories.findIndex(
+          item => item.id === this.modalItem.id
+        )
+
+        this.groups[indexGroup].categories[indexCategory] = this.modalItem
+      }
       localStorage.setItem('mm-groups', JSON.stringify(this.groups))
     }
   }
