@@ -9,9 +9,14 @@
     <div class="d-flex justify-content-between align-items-center">
       <span>{{ group.title }}</span>
       <div>
-        <span class="badge bg-success me-2">{{
-          getTotalSum(group.categories) || ''
-        }}</span>
+        <span
+          class="badge me-2"
+          :class="{
+            'bg-success': group.type === 'debet',
+            'bg-danger': group.type === 'credit'
+          }"
+          >{{ getTotalSum(group.categories) || '' }}</span
+        >
         <ButtonEdit
           class="me-2"
           @click="$emit('show-modal', { item: group })"
@@ -22,6 +27,7 @@
     <CategoryAddItem @add-category="addCategory" />
     <CategoryList
       :categories="group.categories"
+      :type="group.type"
       @remove-category-item="removeCategoryItem"
       @show-modal="showModal"
     />

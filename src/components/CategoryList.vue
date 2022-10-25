@@ -4,6 +4,7 @@
       v-for="category in categories"
       :key="category.id"
       :category="category"
+      :type="type"
       @remove-category-item="removeCategoryItem"
       @show-modal="showModal"
     />
@@ -18,7 +19,8 @@ export default {
     CategoryItem
   },
   props: {
-    categories: Array
+    categories: Array,
+    type: String
   },
   emits: ['remove-category-item', 'show-modal'],
   methods: {

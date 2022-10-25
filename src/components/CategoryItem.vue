@@ -12,9 +12,15 @@
   >
     <span>{{ category.title }}</span>
     <div>
-      <span v-if="category.sum" class="badge bg-success me-2">{{
-        category.sum
-      }}</span>
+      <span
+        v-if="category.sum"
+        class="badge me-2"
+        :class="{
+          'bg-success': type === 'debet',
+          'bg-danger': type === 'credit'
+        }"
+        >{{ category.sum }}</span
+      >
       <ButtonEdit
         class="me-1"
         @click="$emit('show-modal', { item: category })"
@@ -41,7 +47,8 @@ export default {
     ButtonRemove
   },
   props: {
-    category: Object
+    category: Object,
+    type: String
   },
   emits: ['remove-category-item', 'show-modal'],
   methods: {
