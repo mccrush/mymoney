@@ -6,35 +6,33 @@
     <div class="col-6 mb-3">
       <div class="border border-warning rounded fs-5 pb-1">
         <span class="badge bg-success">{{
-          getTotalSum(groups.filter(item => item.type === 'debet'))
+          getTotalSum(groups.filter(item => item.vid === 'debet'))
         }}</span>
         -
         <span class="badge bg-danger">{{
-          getTotalSum(groups.filter(item => item.type === 'credit'))
+          getTotalSum(groups.filter(item => item.vid === 'credit'))
         }}</span>
         =
         <span class="badge bg-warning">{{
-          getTotalSum(groups.filter(item => item.type === 'debet')) -
-          getTotalSum(groups.filter(item => item.type === 'credit'))
+          getTotalSum(groups.filter(item => item.vid === 'debet')) -
+          getTotalSum(groups.filter(item => item.vid === 'credit'))
         }}</span>
       </div>
     </div>
     <div class="col-6">
       <GroupList
-        :groups="groups.filter(item => item.type === 'debet')"
+        :groups="groups.filter(item => item.vid === 'debet')"
         @remove-group-item="removeGroupItem"
         @add-category-item="addCategoryItem"
         @remove-category-item="removeCategoryItem"
-        @show-modal="showModal"
       />
     </div>
     <div class="col-6">
       <GroupList
-        :groups="groups.filter(item => item.type === 'credit')"
+        :groups="groups.filter(item => item.vid === 'credit')"
         @remove-group-item="removeGroupItem"
         @add-category-item="addCategoryItem"
         @remove-category-item="removeCategoryItem"
-        @show-modal="showModal"
       />
     </div>
   </div>
@@ -54,7 +52,12 @@ export default {
   },
   data() {
     return {
-      groups: JSON.parse(localStorage.getItem('mm-groups') || '[]')
+      //groups: JSON.parse(localStorage.getItem('mm-groups') || '[]')
+    }
+  },
+  computed: {
+    groups() {
+      return this.$store.getters.groups
     }
   },
   methods: {

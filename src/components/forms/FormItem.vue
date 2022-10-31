@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <div class="form-floating mb-2">
+      <div class="form-floating">
         <input
           type="date"
           class="form-control form-control-sm"
@@ -13,7 +13,31 @@
         <label for="inputItemDateCreate">Дата</label>
       </div>
 
-      <div class="form-floating mb-2">
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="inputGroupId"
+          aria-label="Группа"
+          v-model="groupId"
+        >
+          <option value="debet">Доход</option>
+        </select>
+        <label for="inputGroupId">Группа</label>
+      </div>
+
+      <div class="form-floating">
+        <select
+          class="form-select"
+          id="inputCAtegoryId"
+          aria-label="Категория"
+          v-model="categoryId"
+        >
+          <option value="debet">Доход</option>
+        </select>
+        <label for="inputCAtegoryId">Категория</label>
+      </div>
+
+      <div class="form-floating">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -26,17 +50,18 @@
       </div>
 
       <div class="form-floating">
-        <select
-          class="form-select"
-          id="inputGroupType"
-          aria-label="Выбор типа группы"
-          v-model="type"
-          @change="saveItem"
-        >
-          <option value="debet">Доход</option>
-          <option value="credit">Расход</option>
-        </select>
-        <label for="inputGroupType">Тип группы</label>
+        <input
+          type="number"
+          step="10"
+          min="10"
+          max="999990"
+          class="form-control form-control-sm"
+          id="inputItemSum"
+          placeholder="Сумма"
+          v-model.number="sum"
+          @blur="saveItem"
+        />
+        <label for="inputItemSum">Сумма</label>
       </div>
     </div>
   </div>

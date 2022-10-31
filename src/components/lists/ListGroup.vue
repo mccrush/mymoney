@@ -4,7 +4,7 @@
       <div class="list-group">
         <button
           v-for="group in groups"
-          :key="group.page"
+          :key="group.id"
           class="list-group-item list-group-item-action"
           aria-current="true"
         >
@@ -14,3 +14,13 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    groups() {
+      return this.$store.getters.groups
+    }
+  }
+}
+</script>
