@@ -19,7 +19,6 @@
         <button
           v-for="rout in routes"
           :key="rout.page"
-          target="_self"
           class="list-group-item list-group-item-action"
           aria-current="true"
           @click="changePage(rout.href)"

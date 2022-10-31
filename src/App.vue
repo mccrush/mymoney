@@ -7,7 +7,7 @@
 
     <div class="container-fluid">
       <transition name="fade" mode="out-in" appear>
-        <component :is="CurrentPage" />
+        <component :is="CurrentPage" class="pt-3" />
       </transition>
     </div>
 
