@@ -35,9 +35,9 @@ export default {
         commit('addItem', { item })
         await setDoc(doc(db, item.type, item.id), item)
         //commit('updateLoadingStatus', false)
-        console.log('admin.js: addItem(): Данные добавлены')
+        console.log('items.js: addItem(): Данные добавлены')
       } catch (error) {
-        console.error('admin.js: addItem(): error', error)
+        console.error('items.js: addItem(): error', error)
       }
     },
   },

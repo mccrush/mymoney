@@ -27,7 +27,7 @@
     </div>
     <CategoryAddItem @add-category="addCategory" />
     <CategoryList
-      :categories="group.categories"
+      :categories="filterCategories"
       :type="group.type"
       @remove-category-item="removeCategoryItem"
       @show-modal="showModal"
@@ -60,6 +60,14 @@ export default {
     'remove-category-item',
     'show-modal'
   ],
+  computed: {
+    categories() {
+      return this.$store.getters.categories
+    },
+    filterCategories() {
+      return this.categories.filter(item => item.groupId === this.group.id)
+    }
+  },
   methods: {
     getTotalSum,
     removeGroupItem({ id }) {
@@ -74,7 +82,8 @@ export default {
         new ClassCategory(this.group.id, title)
       )
 
-      this.$emit('add-category-item', { category })
+      this.$store.dispatch('addItem', { item: category })
+      //this.$emit('add-category-item', { category })
     },
 
     removeCategoryItem({ groupId, categoryId }) {

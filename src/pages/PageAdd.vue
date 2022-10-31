@@ -5,15 +5,19 @@
       <button class="btn btn-lg btn-outline-danger w-100 mt-3">Расход</button>
     </div>
     <div class="col-12">
-      <ListGroup class="mt-2" />
+      <ListGroup @set-group-id="setGroupId" class="mt-2" />
     </div>
 
     <div class="col-12">
-      <ListCategory class="mt-2" />
+      <ListCategory
+        :groupId="groupId"
+        @set-category-id="setCategoryId"
+        class="mt-2"
+      />
     </div>
 
     <div class="col-12">
-      <FormItem class="mt-2" />
+      <FormItem :groupId="groupId" :categoryId="categoryId" class="mt-2" />
     </div>
   </div>
 </template>
@@ -28,6 +32,20 @@ export default {
     ListGroup,
     ListCategory,
     FormItem
+  },
+  data() {
+    return {
+      groupId: '',
+      categoryId: ''
+    }
+  },
+  methods: {
+    setGroupId({ groupId }) {
+      this.groupId = groupId
+    },
+    setCategoryId({ categoryId }) {
+      this.categoryId = categoryId
+    }
   }
 }
 </script>

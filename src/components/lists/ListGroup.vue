@@ -7,6 +7,7 @@
           :key="group.id"
           class="list-group-item list-group-item-action"
           aria-current="true"
+          @click="$emit('set-group-id', { groupId: group.id })"
         >
           {{ group.title }}
         </button>
@@ -17,6 +18,7 @@
 
 <script>
 export default {
+  emits: ['set-group-id'],
   computed: {
     groups() {
       return this.$store.getters.groups

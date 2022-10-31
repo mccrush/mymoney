@@ -70,14 +70,14 @@
 <script>
 export default {
   props: {
-    item: Object
+    groupId: String,
+    categoryId: String
   },
   emits: ['save-item'],
   data() {
     return {
       date: '',
-      title: '',
-      type: ''
+      title: ''
     }
   },
   methods: {

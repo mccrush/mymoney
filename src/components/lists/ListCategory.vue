@@ -1,12 +1,13 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <div class="list-category">
+      <div class="list-group">
         <button
-          v-for="category in categories"
+          v-for="category in filterCategories"
           :key="category.id"
-          class="list-category-item list-category-item-action"
+          class="list-group-item list-group-item-action"
           aria-current="true"
+          @click="$emit('set-category-id', { categoryId: category.id })"
         >
           {{ category.title }}
         </button>
@@ -17,9 +18,16 @@
 
 <script>
 export default {
+  props: {
+    groupId: String
+  },
+  emits: ['set-category-id'],
   computed: {
     categories() {
       return this.$store.getters.categories
+    },
+    filterCategories() {
+      return this.categories.filter(item => item.groupId === this.groupId)
     }
   }
 }
