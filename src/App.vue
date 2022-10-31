@@ -1,133 +1,59 @@
 
 
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-6 mb-3">
-        <GroupAddItem @add-group="addGroup" />
-      </div>
-      <div class="col-6 mb-3">
-        <div class="border border-warning rounded fs-5 pb-1">
-          <span class="badge bg-success">{{
-            getTotalSum(groups.filter(item => item.type === 'debet'))
-          }}</span>
-          -
-          <span class="badge bg-danger">{{
-            getTotalSum(groups.filter(item => item.type === 'credit'))
-          }}</span>
-          =
-          <span class="badge bg-warning">{{
-            getTotalSum(groups.filter(item => item.type === 'debet')) -
-            getTotalSum(groups.filter(item => item.type === 'credit'))
-          }}</span>
-        </div>
-      </div>
-      <div class="col-6">
-        <GroupList
-          :groups="groups.filter(item => item.type === 'debet')"
-          @remove-group-item="removeGroupItem"
-          @add-category-item="addCategoryItem"
-          @remove-category-item="removeCategoryItem"
-          @show-modal="showModal"
-        />
-      </div>
-      <div class="col-6">
-        <GroupList
-          :groups="groups.filter(item => item.type === 'credit')"
-          @remove-group-item="removeGroupItem"
-          @add-category-item="addCategoryItem"
-          @remove-category-item="removeCategoryItem"
-          @show-modal="showModal"
-        />
-      </div>
+  <div>
+    <NavBar />
+    <OffCanvas />
+
+    <div class="container-fluid">
+      <transition name="fade" mode="out-in" appear>
+        <component :is="CurrentPage" />
+      </transition>
     </div>
-    <ModalMain
-      id="modal"
-      :item="modalItem"
-      :groups="groups"
-      @save-item="saveItem"
-    />
+
+    <ModalMain id="modal" :item="modalItem" />
   </div>
 </template>
 
 <script>
+import routes from './data/routes'
+import 'bootstrap/js/dist/offcanvas'
 import Modal from 'bootstrap/js/dist/modal'
-import ClassGroup from './classes/ClassGroup'
-import getTotalSum from './scripts/getTotalSum'
 
-import GroupAddItem from './components/GroupAddItem.vue'
-import GroupList from './components/GroupList.vue'
+import NavBar from './components/interface/NavBar.vue'
+import OffCanvas from './components/interface/OffCanvas.vue'
+import PageGroup from './pages/PageGroup.vue'
+import PageAdd from './pages/PageAdd.vue'
+import Page404 from './pages/Page404.vue'
+
 import ModalMain from './components/modal/ModalMain.vue'
 
 export default {
   components: {
-    GroupAddItem,
-    GroupList,
+    NavBar,
+    OffCanvas,
+    PageGroup,
+    PageAdd,
+    Page404,
     ModalMain
   },
   data() {
     return {
-      groups: JSON.parse(localStorage.getItem('mm-groups') || '[]'),
+      routes,
+      currentRoute: window.location.pathname,
       modalItem: null
     }
   },
+  computed: {
+    CurrentPage() {
+      return this.routes[this.currentRoute] || Page404
+    }
+  },
   methods: {
-    getTotalSum,
-    addGroup({ type, title }) {
-      const group = Object.assign({}, new ClassGroup(type, title))
-      this.groups.push(group)
-      localStorage.setItem('mm-groups', JSON.stringify(this.groups))
-    },
-
-    removeGroupItem({ id }) {
-      this.groups = this.groups.filter(item => item.id !== id)
-      localStorage.setItem('mm-groups', JSON.stringify(this.groups))
-    },
-
-    addCategoryItem({ category }) {
-      const index = this.groups.findIndex(item => item.id === category.groupId)
-
-      this.groups[index].categories.push(category)
-      localStorage.setItem('mm-groups', JSON.stringify(this.groups))
-    },
-
-    removeCategoryItem({ groupId, categoryId }) {
-      const index = this.groups.findIndex(item => item.id === groupId)
-      const arrayCategories = this.groups[index].categories.filter(
-        item => item.id !== categoryId
-      )
-      this.groups[index].categories = arrayCategories
-      localStorage.setItem('mm-groups', JSON.stringify(this.groups))
-    },
-
     showModal({ item }) {
       this.modalItem = item
       const modal = new Modal(document.getElementById('modal'))
       modal.show()
-    },
-
-    saveItem() {
-      if (this.modalItem.type === 'debet' || this.modalItem.type === 'credit') {
-        const index = this.groups.findIndex(
-          item => item.id === this.modalItem.id
-        )
-        this.groups[index] = this.modalItem
-      } else if (this.modalItem.type === 'category') {
-        const indexGroup = this.groups.findIndex(
-          item => item.id === this.modalItem.groupId
-        )
-
-        const indexCategory = this.groups[indexGroup].categories.findIndex(
-          item => item.id === this.modalItem.id
-        )
-
-        this.groups[indexGroup].categories[indexCategory] = this.modalItem
-
-        // Посчитать итоговую сумму катеории и сохранить в сумму группы
-        const groupSum = getTotalSum(this.groups[indexGroup].categories)
-        this.groups[indexGroup].sum = groupSum
-      }
-      localStorage.setItem('mm-groups', JSON.stringify(this.groups))
     }
   }
 }
