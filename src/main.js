@@ -19,7 +19,10 @@ onAuthStateChanged(auth, (user) => {
 
   if (user) {
     console.log('main.js : Пользователь авторизован')
+    store.commit('setUserId', user.uid)
   } else {
+    store.commit('setUserId', null)
+    store.commit('setUserData', null)
     console.log('main.js: Пользователь не авторизован. user = ', user)
   }
 
