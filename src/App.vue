@@ -24,6 +24,7 @@ import NavBar from './components/interface/NavBar.vue'
 import OffCanvas from './components/interface/OffCanvas.vue'
 import PageGroup from './pages/PageGroup.vue'
 import PageAdd from './pages/PageAdd.vue'
+import PageLogin from './pages/PageLogin.vue'
 import Page404 from './pages/Page404.vue'
 
 import ModalMain from './components/modal/ModalMain.vue'
@@ -34,6 +35,7 @@ export default {
     OffCanvas,
     PageGroup,
     PageAdd,
+    PageLogin,
     Page404,
     ModalMain
   },
@@ -46,7 +48,7 @@ export default {
   },
   computed: {
     CurrentPage() {
-      return this.routes[this.currentRoute] || Page404
+      return this.routes[this.currentRoute].page || Page404
     }
   },
   methods: {

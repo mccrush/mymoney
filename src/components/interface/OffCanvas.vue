@@ -15,10 +15,35 @@
       ></button>
     </div>
     <div class="offcanvas-body">
-      <div>
-        Some text as placeholder. In real life you can have the elements you
-        have chosen. Like, text, images, lists, etc.
+      <div class="list-group">
+        <button
+          v-for="rout in routes"
+          :key="rout.page"
+          target="_self"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          @click="changePage(rout.href)"
+        >
+          {{ rout.title }}
+        </button>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import routes from './../../data/routes'
+
+export default {
+  data() {
+    return {
+      routes
+    }
+  },
+  methods: {
+    changePage(href) {
+      window.location.assign(href)
+    }
+  }
+}
+</script>
