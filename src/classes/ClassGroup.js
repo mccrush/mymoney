@@ -2,11 +2,12 @@ import getId from './../scripts/getId'
 import getDateNow from './../scripts/getDateNow'
 
 export default class ClassGroup {
-  constructor(type = '', title = '') {
+  constructor(vid = '', title = '') {
     this.id = getId()
-    this.type = type
+    this.type = 'groups'
     this.title = title
     this.description = ''
+    this.vid = vid
     this.position = 0
     this.dateCreate = getDateNow()
     this.categories = []

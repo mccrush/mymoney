@@ -13,7 +13,7 @@
       class="form-select"
       id="inputGroupType"
       aria-label="Выбор типа группы"
-      v-model="type"
+      v-model="vid"
     >
       <option value="debet">Доход</option>
       <option value="credit">Расход</option>
@@ -35,13 +35,13 @@ export default {
   data() {
     return {
       title: '',
-      type: 'debet'
+      vid: 'debet'
     }
   },
   methods: {
     addGroupItem() {
       if (this.title) {
-        this.$emit('add-group', { type: this.type, title: this.title })
+        this.$emit('add-group', { vid: this.vid, title: this.title })
         this.title = ''
       }
     }

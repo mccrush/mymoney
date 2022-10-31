@@ -12,7 +12,8 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
     "firebase": "^9.13.0",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",

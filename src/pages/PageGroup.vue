@@ -59,10 +59,12 @@ export default {
   },
   methods: {
     getTotalSum,
-    addGroup({ type, title }) {
-      const group = Object.assign({}, new ClassGroup(type, title))
-      this.groups.push(group)
-      localStorage.setItem('mm-groups', JSON.stringify(this.groups))
+    addGroup({ vid, title }) {
+      const group = Object.assign({}, new ClassGroup(vid, title))
+
+      this.$store.dispatch('addGroup', { group })
+      //this.groups.push(group)
+      //localStorage.setItem('mm-groups', JSON.stringify(this.groups))
     },
 
     removeGroupItem({ id }) {
@@ -86,29 +88,31 @@ export default {
       localStorage.setItem('mm-groups', JSON.stringify(this.groups))
     },
 
-    saveItem() {
-      if (this.modalItem.type === 'debet' || this.modalItem.type === 'credit') {
-        const index = this.groups.findIndex(
-          item => item.id === this.modalItem.id
-        )
-        this.groups[index] = this.modalItem
-      } else if (this.modalItem.type === 'category') {
-        const indexGroup = this.groups.findIndex(
-          item => item.id === this.modalItem.groupId
-        )
+    saveItem() {}
 
-        const indexCategory = this.groups[indexGroup].categories.findIndex(
-          item => item.id === this.modalItem.id
-        )
+    // saveItem() {
 
-        this.groups[indexGroup].categories[indexCategory] = this.modalItem
+    //   if (this.modalItem.vid === 'debet' || this.modalItem.vid === 'credit') {
+    //     const index = this.groups.findIndex(
+    //       item => item.id === this.modalItem.id
+    //     )
+    //     this.groups[index] = this.modalItem
+    //   } else if (this.modalItem.vid === 'category') {
+    //     const indexGroup = this.groups.findIndex(
+    //       item => item.id === this.modalItem.groupId
+    //     )
 
-        // Посчитать итоговую сумму катеории и сохранить в сумму группы
-        const groupSum = getTotalSum(this.groups[indexGroup].categories)
-        this.groups[indexGroup].sum = groupSum
-      }
-      localStorage.setItem('mm-groups', JSON.stringify(this.groups))
-    }
+    //     const indexCategory = this.groups[indexGroup].categories.findIndex(
+    //       item => item.id === this.modalItem.id
+    //     )
+
+    //     this.groups[indexGroup].categories[indexCategory] = this.modalItem
+
+    //     const groupSum = getTotalSum(this.groups[indexGroup].categories)
+    //     this.groups[indexGroup].sum = groupSum
+    //   }
+    //   localStorage.setItem('mm-groups', JSON.stringify(this.groups))
+    // }
   }
 }
 </script>
