@@ -6,10 +6,15 @@ export default {
   state: {
     groups: []
   },
-  mutations: {},
+  mutations: {
+    addGroup(state, { group }) {
+      state.groups.push(group)
+    }
+  },
   actions: {
     async addGroup({ commit }, { group }) {
       try {
+        console.log('Comin group:', group);
         //commit('updateLoadingStatus', true)
         commit('addGroup', { group })
         await setDoc(doc(db, group.type, group.id), group)

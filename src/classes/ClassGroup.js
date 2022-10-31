@@ -10,6 +10,5 @@ export default class ClassGroup {
     this.vid = vid
     this.position = 0
     this.dateCreate = getDateNow()
-    this.categories = []
   }
 }
