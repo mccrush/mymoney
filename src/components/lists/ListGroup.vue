@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="list-group">
         <button
-          v-for="group in groups"
+          v-for="group in filterGroups"
           :key="group.id"
           class="list-group-item list-group-item-action"
           aria-current="true"
@@ -18,10 +18,16 @@
 
 <script>
 export default {
+  props: {
+    vid: String
+  },
   emits: ['set-group-id'],
   computed: {
     groups() {
       return this.$store.getters.groups
+    },
+    filterGroups() {
+      return this.groups.filter(item => item.vid === this.vid)
     }
   }
 }

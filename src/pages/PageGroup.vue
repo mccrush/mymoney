@@ -65,7 +65,7 @@ export default {
     addGroup({ vid, title }) {
       const group = Object.assign({}, new ClassGroup(vid, title))
 
-      this.$store.dispatch('addGroup', { group })
+      this.$store.dispatch('addItem', { item: group })
       //this.groups.push(group)
       //localStorage.setItem('mm-groups', JSON.stringify(this.groups))
     },

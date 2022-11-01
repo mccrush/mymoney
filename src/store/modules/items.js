@@ -13,6 +13,7 @@ export default {
       state[type] = items
     },
     addItem(state, { item }) {
+      //console.log('items.js: mut addItem(): item:', item)
       state[item.type].push(item)
     },
   },
@@ -31,6 +32,7 @@ export default {
 
     async addItem({ commit }, { item }) {
       try {
+        //console.log('items.js: act addItem(): item:', item)
         //commit('updateLoadingStatus', true)
         commit('addItem', { item })
         await setDoc(doc(db, item.type, item.id), item)
