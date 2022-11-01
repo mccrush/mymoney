@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar bg-light">
+  <nav class="navbar bg-light shadow-sm">
     <div class="container-fluid">
       <ButtonShowOffCanvas
         data-bs-toggle="offcanvas"

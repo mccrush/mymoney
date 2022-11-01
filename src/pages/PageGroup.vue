@@ -1,9 +1,9 @@
 <template>
   <div class="row">
-    <div class="col-6 mb-3">
+    <div class="col-12 col-md-6 mb-3">
       <GroupAddItem @add-group="addGroup" />
     </div>
-    <div class="col-6 mb-3">
+    <div class="col-12 col-md-6 mb-3">
       <div class="border border-warning rounded fs-5 pb-1">
         <span class="badge bg-success">{{
           getTotalSum(groups.filter(item => item.vid === 'debet'))
@@ -19,7 +19,7 @@
         }}</span>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <GroupList
         :groups="groups.filter(item => item.vid === 'debet')"
         @remove-group-item="removeGroupItem"
@@ -27,7 +27,7 @@
         @remove-category-item="removeCategoryItem"
       />
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <GroupList
         :groups="groups.filter(item => item.vid === 'credit')"
         @remove-group-item="removeGroupItem"
