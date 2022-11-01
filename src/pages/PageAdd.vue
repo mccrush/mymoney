@@ -1,27 +1,38 @@
 <template>
   <div class="row">
     <div class="col-12">
-      <button
-        v-if="vid"
-        @click="setVid('')"
-        class="btn btn-sm btn-outline-dark w-25"
-      >
-        Вид
-      </button>
-      <button
-        v-if="groupId"
-        @click="setGroupId({ groupId: '' })"
-        class="btn btn-sm btn-outline-dark w-25"
-      >
-        Группа
-      </button>
-      <button
-        v-if="categoryId"
-        @click="setCategoryId({ categoryId: '' })"
-        class="btn btn-sm btn-outline-dark w-25"
-      >
-        Категория
-      </button>
+      <div class="row">
+        <div class="col-4 pe-0">
+          <button
+            v-if="vid"
+            @click="setVid('')"
+            class="btn btn-sm btn-outline-dark lh-1 w-100"
+          >
+            Вид:
+            {{ vids[vid] }}
+          </button>
+        </div>
+        <div class="col-4 pe-0">
+          <button
+            v-if="groupId"
+            @click="setGroupId({ groupId: '' })"
+            class="btn btn-sm btn-outline-dark lh-1 w-100"
+          >
+            Группа:
+            {{ groups.find(item => item.id === groupId).title }}
+          </button>
+        </div>
+        <div class="col-4">
+          <button
+            v-if="categoryId"
+            @click="setCategoryId({ categoryId: '' })"
+            class="btn btn-sm btn-outline-dark lh-1 w-100"
+          >
+            Категория:
+            {{ categories.find(item => item.id === categoryId).title }}
+          </button>
+        </div>
+      </div>
     </div>
 
     <div v-if="!vid" class="col-12 mt-2">
@@ -29,13 +40,13 @@
         @click="setVid('debet')"
         class="btn btn-lg btn-outline-success w-100"
       >
-        Доход
+        {{ vids.debet }}
       </button>
       <button
         @click="setVid('credit')"
         class="btn btn-lg btn-outline-danger w-100 mt-3"
       >
-        Расход
+        {{ vids.credit }}
       </button>
     </div>
 
@@ -72,7 +83,16 @@ export default {
     return {
       vid: '',
       groupId: '',
-      categoryId: ''
+      categoryId: '',
+      vids: { debet: 'Доход', credit: 'Расход' }
+    }
+  },
+  computed: {
+    groups() {
+      return this.$store.getters.groups
+    },
+    categories() {
+      return this.$store.getters.categories
     }
   },
   methods: {
