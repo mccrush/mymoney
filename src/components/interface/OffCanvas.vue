@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     changePage(href) {
-      window.location.assign(href)
+      this.$store.commit('setPage', { page: href })
     }
   }
 }

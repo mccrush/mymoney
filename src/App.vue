@@ -42,7 +42,6 @@ export default {
   data() {
     return {
       routes,
-      currentRoute: window.location.pathname,
       modalItem: null
     }
   },
@@ -50,11 +49,15 @@ export default {
     userId() {
       return this.$store.getters.userId
     },
+    currentRoute() {
+      return this.$store.getters.page
+    },
     CurrentPage() {
       if (this.userId) {
         if (this.currentRoute === '/login') {
           return 'PageAdd'
         } else {
+          //return this.routes[this.currentRoute].page || Page404
           return this.routes[this.currentRoute].page || Page404
         }
       } else {
